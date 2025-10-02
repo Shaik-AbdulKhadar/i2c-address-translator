@@ -1,1 +1,23 @@
+# Design Documentation: I²C Address Translator
 
+## Architecture
+- FPGA sits between **Master** and **Target**.
+- Appears as slave at **Virtual Address (VA)**.
+- Talks to target at **Real Address (RA)**.
+- Data passes unchanged, only address is remapped.
+
+## FSM
+- **IDLE**: Wait for START.
+- **ADDR**: Capture address byte.
+- **TRANS**: Replace VA → RA.
+- **WRITE**: Forward master → target data.
+- **READ**: Forward target → master data.
+- **STOP**: Reset to IDLE.
+
+## Address Translation
+Master sends `VA`. Translator intercepts and forwards `RA` to target device. ACK/NACK is preserved.
+
+## Challenges
+- Handling bidirectional SDA.
+- Meeting I²C timing (100/400kHz).
+- Clean FSM and open-drain logic for FPGA.
