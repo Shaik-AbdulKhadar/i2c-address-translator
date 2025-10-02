@@ -1,0 +1,15 @@
+i2c-address-translator-fpga/
+│
+├── src/
+│   ├── i2c_addr_translator.v    
+│   └── tb_i2c_translator.v      
+│
+├── sim/
+│   ├── wave.vcd
+│   └── eda_playground_link.txt   
+├── reports/
+│   └── resource_report.md      
+├── docs/
+│   └── design_doc.md           
+│
+└── README.md                
